@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas动画</title>
+	<style type="text/css">
+		#canvas {
+			border: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<span id="number">0</span>
+	<script type="text/javascript">
+		var number = document.getElementById("number");
+		var start = 0;
+		var tick = 0; //添加一个变量，控制执行间隔
+
+		function add() {
+			tick++;
+			if(tick % 10 === 0) {
+				start += 5;
+				number.innerHTML = start;
+			}
+			requestAnimationFrame(add);
+		}
+		requestAnimationFrame(add);
+
+	</script>
+</body>
+</html>

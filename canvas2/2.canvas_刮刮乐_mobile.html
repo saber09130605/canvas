@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>canvas动画</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			/*overflow: hidden;*/
+			height: 1200px;
+		}
+		#canvas {
+			/*border: 1px solid;*/
+			position: relative;
+			left: 50px;
+			top: 50px;
+		}
+		#award {
+			position: absolute;
+			left: 120px;
+			top: 120px;
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+
+	<canvas id="canvas" width="300" height="300"></canvas>
+	<span id="award">一等奖</span>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		// 设置画布的宽高
+		// canvas.width = window.innerWidth;
+		// canvas.height = window.innerHeight;
+
+		ctx.fillStyle = "#ccc";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		
+		canvas.addEventListener("touchmove", function(e) {
+			console.log(e.touches[0])
+			var touch = e.touches[0];
+			ctx.clearRect(touch.pageX - this.offsetLeft, touch.pageY - this.offsetTop, 10, 10);
+			e.preventDefault();
+		}, false)
+	</script>
+</body>
+</html>

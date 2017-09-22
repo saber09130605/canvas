@@ -1,0 +1,24 @@
+1. canvas 提供一套js绘制图像接口
+	
+	绘制矩形的接口方法有：ctx.fillRect(x,y,w,h)
+						  ctx.strokeRect(x,y,w,h
+						  ctx.clearRect(x,y,w,h)
+	其他图形绘制步骤：
+	a. 开始一个路径 ctx.beginPath()
+	b. 绘制图形路径 ctx.moveTo(x,y)
+					ctx.lineTo(x,y)
+					ctx.arc(x,y,radius,beginAngle,endAngle, clockwise)
+	c. 闭合路径  ctx.closePath()
+	d. 填充/描边
+
+2. 文本
+	ctx.fillText("书写的内容", x, y)
+	ctx.strokeText("书写的内容", x, y)
+
+	a. ctx.textBaseline = "middle";
+	   ctx.textAlign = "center";
+	   ctx.fillText("书写的内容", canvas.width/2, canvas.height/2)
+
+	b. var cm = ctx.measureText("书写的内容");
+		ctx.textBaseline = "middle";
+		ctx.fillText("书写的内容",(canvas.width - cm.width)/2, canvas.height/2)

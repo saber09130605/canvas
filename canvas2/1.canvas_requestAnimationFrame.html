@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas动画</title>
+	<style type="text/css">
+		#canvas {
+			border: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var x = 0;
+		ctx.fillStyle = "red";
+		ctx.fillRect(x,0,100,50);
+
+		// setInterval(move,1)
+
+		function move() {
+			//清除画布
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			//矩形x坐标增加
+			x++;
+			//填充矩形
+			ctx.fillRect(x,0,100,50);
+			//动画帧递归
+			id = requestAnimationFrame(move);
+			if(x > canvas.width - 100) {
+				cancelAnimationFrame(id);//停止动画
+			}
+		}
+		
+		var id = requestAnimationFrame(move);
+
+	</script>
+</body>
+</html>
