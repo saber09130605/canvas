@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="500">你的浏览器不支持canvas</canvas>
+<script>
+    //得到标签
+    var canvas = document.getElementById("canvas");
+    //上下文
+    var ctx = canvas.getContext("2d");
+    var ballArray = new Array();
+    var getRandomColor = function(){
+        return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).substr(-6);
+    }
+    function Ball(x,y){
+        this.x=x;
+        this.y=y;
+        this.r=30;
+        this.color=getRandomColor();
+        this.diffX=Math.random()*10-5;
+        this.diffY=Math.random()*10-5;
+        this.diffR=Math.random()+0.3;
+        ballArray.push(this)
+    }
+    Ball.prototype={
+        update(){
+            this.x+= this.diffX;
+            this.y+= this.diffY;
+            this.r-= this.diffR;
+            if(this.r<=0){
+                console.log(this.r)
+                this.r = 0.1;
+                console.log(this)
+                ballArray.splice(ballArray.findIndex(c=>c==this),1);
+            }
+        },
+        render() {
+            ctx.beginPath()
+            ctx.arc(this.x,this.y,this.r,0,2*Math.PI,true)
+            ctx.closePath()
+            ctx.strokeStyle=this.color;
+            ctx.stroke();
+            ctx.fillStyle=this.color;
+            ctx.fill();
+        }
+    }
+    setInterval(()=>{
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ballArray.map(m=>{
+            m.update();
+            if(m){
+                m.render()
+            }
+        })
+    },20)
+    //监听
+    canvas.addEventListener("mousemove", function(event){
+        new Ball(event.offsetX , event.offsetY);
+    });
+</script>
+</body>
+</html>

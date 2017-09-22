@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<span id='div1'>把要打印的内容放这里</span> 
+		<p>所有内容</p> 
+		<ol>
+			<li class="flex">
+				<span>三鹿牛奶233</span>
+				<span>￥3*2</span>
+				<span>￥6</span>
+			</li>
+			<li class="flex">
+				<span>三鹿牛奶</span>
+				<span>￥3*2</span>
+				<span>￥6</span>
+			</li>
+			<li class="flex">
+				<span>三鹿牛奶</span>
+				<span>￥3*2</span>
+				<span>￥6</span>
+			</li>
+		</ol>
+		<div id="div2">div2的内容</div> 
+		<a href="javascript:preview()" rel="external nofollow" target="_self">打印</a> 
+		<input type="file" name="" id="" value="" multiple="multiple"/>
+		<script language="javascript"> 
+		function preview(oper) 
+		{ 
+		if (oper < 10){ 
+		bdhtml=window.document.body.innerHTML;//获取当前页的html代码 
+		sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域 
+		eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域 
+		prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html 
+		prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html 
+		window.document.body.innerHTML=prnhtml; 
+		window.print(); 
+		window.document.body.innerHTML=bdhtml; 
+		} else { 
+		window.print(); 
+		} 
+		}
+		</script>
+	</body>
+</html>
